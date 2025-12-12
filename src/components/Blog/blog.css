@@ -1,0 +1,57 @@
+.blog-post-container {
+  max-width: 750px;
+  margin: 120px auto 80px auto; /* pushes content down and centers it */
+  padding: 0 20px;
+  color: #ffffff;
+  line-height: 1.7;
+  font-size: 1.2rem;
+}
+
+/* Improve Markdown typography */
+.markdown-body h1, 
+.markdown-body h2, 
+.markdown-body h3 {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.markdown-body p {
+  margin: 18px 0;
+}
+
+/* Horizontal rule styling */
+.markdown-body hr {
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  margin: 40px 0;
+}
+
+/* Center all lists and improve spacing */
+.markdown-body ul {
+  padding-left: 20px;
+  margin: 20px 0;
+}
+
+/* Center blockquotes */
+.markdown-body blockquote {
+  border-left: 4px solid #bb86fc;
+  padding-left: 15px;
+  opacity: 0.9;
+  margin: 20px 0;
+  font-style: italic;
+}
+
+/* Fix footer pushing up problem */
+body, html, #root {
+  min-height: 100%;
+}
+
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+footer {
+  margin-top: auto;
+}
