@@ -7,10 +7,11 @@ function Type() {
       options={{
         strings: [
           "AI Researcher",
-          "Principal/Lead Data Scientist",
+          "Principal Data Scientist",
           "Distributed Systems Engineer",
+          "Software Engineer",
           "Machine Learning Architect",
-          "Open Source Framework Builder",
+          "Open Source Framework Developer",
           "Founder of Ubunye AI Ecosystem",
         ],
         autoStart: true,

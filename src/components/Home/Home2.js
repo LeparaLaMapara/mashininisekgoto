@@ -13,52 +13,59 @@ function Home2() {
               LET ME <span className="purple"> INTRODUCE </span> MYSELF
             </h1>
 
-            <p className="home-about-body">
-              I'm a{" "}
+           <p className="home-about-body">
+              I’m a{" "}
               <span className="purple">
-                Lead Data Scientist, AI Researcher, and Systems Engineer
+                Computer Science AI Researcher and Systems Engineer
               </span>{" "}
-              specialising in distributed machine learning, probabilistic
-              modelling, and large-scale data engineering. My work focuses on
-              designing intelligent systems that are reliable, scalable, and
-              built for real-world impact.
+              working at the intersection of applied distributed machine learning, probabilistic
+              modelling, and large-scale data engineering.
+
+              I design and operationalise real-world AI systems — from data pipelines and
+              streaming architectures to ML models, optimisation engines, production scoring
+              services, and decision-focused interfaces.
               <br />
               <br />
-              I’ve built mission-critical AI platforms across{" "}
-              <span className="purple">telecoms, banking, education and research</span> —
-              including Vodacom’s national Smart Generator Optimisation engine,
-              IBM’s Environmental Intelligence Suite components, and ABSA’s
-              Databricks-based enterprise ML transformation. I enjoy working at the
-              intersection of{" "}
+
+              Over the years, I’ve led and delivered <span className="purple">ML/AI-driven, mission-critical platforms</span> across{" "}
               <span className="purple">
-                machine learning, research , distributed systems, MLOPs and real-time data
-                architectures
-              </span>
-              .
-              <br />
-              <br />
-              I’m proficient in
-              <i>
-                <b className="purple">
-                  {" "}
-                  Python, C++, Rust, Go, JavaScript, PySpark, Flink, and
-                  cloud-native ML frameworks{" "}
-                </b>
-              </i>
-              and I love building end-to-end solutions from data pipelines, ML/AI solutions and
-              scoring engines to visual interfaces and deployment workflows.
-              <br />
-              <br />
-      Outside of research and engineering, I’m a serial founder. Through 
-<span className="purple"> ThabangVision Studio Labs</span>, 
-I run a full-stack creative technology studio spanning photography, film, gear design and rental, visual design, and deep-tech R&D. 
-I also build open-source AI and computer vision frameworks — such as 
-<span className="purple"> UAIE</span> and <span className="purple"> Tfilterspy</span> — 
-and consult for international startups on large-scale AI systems, data engineering, and cloud architecture.
+                telecoms, banking, education, and research
+              </span>{" "}
+              — spanning national-scale network optimisation at <span className="purple">Vodacom</span>, 
+              global geospatial and climate risk intelligence platforms at <span className="purple">IBM</span>, 
+              strategic modernisation of data science and engineering capabilities at <span className="purple">Wits BIS</span>,
+              and enterprise-wide Databricks-based ML transformations at <span className="purple">ABSA</span>.
 
-            </p>
+          <h2 className="purple" style={{ marginTop: "2rem" }}>
+          WORK WITH ME
+          </h2>
+
+            I work with founders, start-ups,leadership teams, and technical organisations to design,
+            modernise, and scale real-world AI and data science and engineering platforms.
+
+          <ul >
+            <li>
+            <span className="purple">AI & data science consulting</span> — strategy, system design, and hands-on execution
+            </li>
+            <li>
+              <span className="purple">Enterprise ML & cloud transformation</span> — Databricks, streaming, and production ML platforms
+            </li>
+            <li>
+              <span className="purple">Advanced analytics & decision systems</span> — turning complex data into operational insights
+            </li>
+            <li>
+              <span className="purple">Technical leadership</span> — consulting and senior/principal engagements
+            </li>
+            <li>
+              <span className="purple">Capability enablement</span> — Datascience/engineering training, mentoring, and workshops
+            </li>
+          </ul>
+
+          If you’re tackling complex AI, data, or platform challenges and need a
+            technically deep partner who can operate across research, engineering, and
+            execution, I’m open to an initial conversation.
+          </p>
           </Col>
-
           <Col md={4} className="myAvtar">
             <Tilt>
               <img src={myImg} className="img-fluid" alt="avatar" />

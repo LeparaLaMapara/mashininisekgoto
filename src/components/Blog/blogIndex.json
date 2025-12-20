@@ -1,16 +1,9 @@
+[
 {
-  "2024": [
-    { "title": "Picking a Research Topic", "slug": "picking-research-topic", "date": "Oct 10" },
-    { "title": "How to create python package", "slug": "how-to-create-python-package", "date": "May 22" },
-    { "title": "Introduction to Realtime Data Processing with PyFlink", "slug": "introduction-to-realtime-data-processing-with-pyflink", "date": "May 22" }
-  ],
-  "2021": [
-    { "title": "Surrogate Assisted Agent Based Modelling", "slug": "saabm", "date": "Mar 8" },
-    { "title": "Representation Learning", "slug": "representation-learning", "date": "Mar 8" },
-    { "title": "Machine Learning in Finance", "slug": "ml-finance", "date": "Mar 8" },
-    { "title": "Catastrophic Forgetting", "slug": "catastrophic-forgetting", "date": "Mar 8" }
-  ],
-  "2020": [
-    { "title": "Surrogate-Assisted Evolutionary Computing", "slug": "saec", "date": "Dec 10" }
-  ]
+  "id": "picking-a-research-topic",
+  "title": "Picking a Research Topic",
+  "date": "2024-10-10",
+  "file": "2024-10-picking-a-research-topic.md"
 }
+
+]

@@ -1,35 +1,43 @@
 import React from "react";
+import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import blogIndex from "./blogIndex.json";
 import "./blog.css";
 
 function BlogList() {
+  const postsByYear = blogIndex.reduce((acc, post) => {
+    const year = new Date(post.date).getFullYear();
+
+    if (!acc[year]) acc[year] = [];
+    acc[year].push(post);
+
+    return acc;
+  }, {});
+
+  const sortedYears = Object.keys(postsByYear)
+    .sort((a, b) => b - a);
+
   return (
-    <div className="blog-container">
-      <h1 className="blog-heading">Blog</h1>
+    <Container className="blog-archive">
+      {sortedYears.map((year) => (
+        <div key={year} className="blog-year-section">
+          <h2 className="blog-year">{year}</h2>
 
-      {Object.keys(blogIndex)
-        .sort((a, b) => b - a)
-        .map((year) => (
-          <div key={year} className="blog-year-section">
-            <h2 className="blog-year">{year}</h2>
-
-            {blogIndex[year].map((post) => (
-              <Link
-                key={post.slug}
-                to={`/blog/${post.slug}`}
-                className="blog-post-link"
-              >
-                <div className="blog-post-entry">
-                  <span className="blog-post-title">{post.title}</span>
-                  <span className="blog-post-date">{post.date}</span>
-                </div>
-              </Link>
+          <ul className="blog-list">
+            {postsByYear[year].map((post) => (
+              <li key={post.id} className="blog-list-item">
+                <Link to={`/blog/${post.id}`} className="blog-title-link">
+                  {post.title}
+                </Link>
+                <span className="blog-date">{post.date}</span>
+              </li>
             ))}
-          </div>
-        ))}
-    </div>
+          </ul>
+        </div>
+      ))}
+    </Container>
   );
 }
+
 
 export default BlogList;

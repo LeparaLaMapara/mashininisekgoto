@@ -1,51 +1,55 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Container } from "react-bootstrap";
+import { useParams, Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+import blogIndex from "./blogIndex.json";
 import "./blog.css";
 
 function BlogPost() {
-  const { slug } = useParams();
+  const { id } = useParams();
   const [content, setContent] = useState("");
-  const [error, setError] = useState(null);
+  const [postMeta, setPostMeta] = useState(null);
 
   useEffect(() => {
-    console.log("Blog slug:", slug); // <--- see what you get in the console
+    const post = blogIndex.find((p) => p.id === id);
+    if (!post) return;
 
-    if (!slug) {
-      setError("No blog post specified.");
-      return;
-    }
+    setPostMeta(post);
 
-    (async () => {
-      try {
-        const file = await import(`./posts/${slug}.md`);
-        const res = await fetch(file.default);
-        const text = await res.text();
-        setContent(text);
-        setError(null);
-      } catch (e) {
-        console.error(e);
-        setError(`Could not load post: ${slug}.md`);
-      }
-    })();
-  }, [slug]);
+    fetch(`/posts/${post.file}`)
+      .then((res) => {
+        if (!res.ok) throw new Error("Post file not found");
+        return res.text();
+      })
+      .then((text) => {
+        const cleaned = text.replace(/---[\s\S]*?---/, "");
+        setContent(cleaned.trim());
+      })
+      .catch(() => setContent("Failed to load post."));
+  }, [id]);
 
-  if (error) {
+  if (!postMeta) {
     return (
-      <div className="blog-post-container">
-        <h1 className="blog-heading">Blog not found</h1>
-        <p style={{ textAlign: "center" }}>{error}</p>
-      </div>
+      <Container className="blog-post">
+        <p>Post not found.</p>
+        <Link to="/blog">← Back to blog</Link>
+      </Container>
     );
   }
 
   return (
-    <div className="blog-post-container">
-      <ReactMarkdown remarkPlugins={[remarkGfm]} className="markdown-body">
+    <Container className="blog-post">
+      <Link to="/blog" className="blog-back">
+        ← Back
+      </Link>
+
+      <h1 className="blog-post-title">{postMeta.title}</h1>
+      <p className="blog-post-date">{postMeta.date}</p>
+
+      <ReactMarkdown className="blog-markdown">
         {content}
       </ReactMarkdown>
-    </div>
+    </Container>
   );
 }
 
