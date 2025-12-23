@@ -1,10 +1,11 @@
 [
-  {
-    "id": "picking-a-research-topic",
-    "title": "Picking a Research Topic",
-    "date": "2024-10-10",
-    "year": 2024,
-    "tags": ["research", "ml", "career"],
-    "file": "2024-10-picking-a-research-topic.md"
+ 
+    {
+    "id": "how-to-build-python-packages",
+    "title": "How I Learned to Build My Own Python Libraries (From Curiosity to Real Work)",
+    "date": "2025-12-23",
+    "year": 2025,
+    "tags": ["open source", "python", "libraries"],
+    "file": "how-to-build-python-packages.md"
   }
 ]
