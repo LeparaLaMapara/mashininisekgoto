@@ -1,9 +1,10 @@
 [
-{
-  "id": "picking-a-research-topic",
-  "title": "Picking a Research Topic",
-  "date": "2024-10-10",
-  "file": "2024-10-picking-a-research-topic.md"
-}
-
+  {
+    "id": "picking-a-research-topic",
+    "title": "Picking a Research Topic",
+    "date": "2024-10-10",
+    "year": 2024,
+    "tags": ["research", "ml", "career"],
+    "file": "2024-10-picking-a-research-topic.md"
+  }
 ]

@@ -9,6 +9,8 @@ import Resume from "./components/Resume/ResumeNew";
 
 import BlogList from "./components/Blog/BlogList";
 import BlogPost from "./components/Blog/BlogPost";
+import TagList from "./components/Blog/TagList";
+import TagPage from "./components/Blog/TagPage";
 
 import {
   BrowserRouter as Router,
@@ -23,12 +25,10 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
-  const [load, upadateLoad] = useState(true);
+  const [load, updateLoad] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      upadateLoad(false);
-    }, 1200);
+    const timer = setTimeout(() => updateLoad(false), 1200);
     return () => clearTimeout(timer);
   }, []);
 
@@ -36,11 +36,10 @@ function App() {
     <Router>
       <Preloader load={load} />
 
-      <div className="app-layout" id={load ? "no-scroll" : "scroll"}>
+      <div className="App" id={load ? "no-scroll" : "scroll"}>
         <Navbar />
         <ScrollToTop />
-
-        {/* THIS IS THE KEY CHANGE */}
+        {/* MAIN CONTENT */}
         <main className="app-content">
           <Routes>
             <Route path="/" element={<Home />} />
@@ -50,6 +49,9 @@ function App() {
 
             <Route path="/blog" element={<BlogList />} />
             <Route path="/blog/:id" element={<BlogPost />} />
+
+            <Route path="/tags" element={<TagList />} />
+            <Route path="/tags/:tag" element={<TagPage />} />
 
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>

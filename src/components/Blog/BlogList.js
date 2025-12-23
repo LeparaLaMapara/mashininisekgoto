@@ -1,26 +1,65 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import blogIndex from "./blogIndex.json";
 import "./blog.css";
 
+/**
+ * BlogList
+ * --------
+ * Renders an archive page grouped by year:
+ * 2024
+ *   Post title .................................. Oct 10
+ * 2021
+ *   ...
+ */
 function BlogList() {
-  const postsByYear = blogIndex.reduce((acc, post) => {
-    const year = new Date(post.date).getFullYear();
+  /**
+   * Normalize + group posts by year.
+   * - If year missing, infer from date.
+   * - Sort posts newest first.
+   */
+  const { sortedYears, postsByYear } = useMemo(() => {
+    const normalized = (blogIndex || []).map((p) => {
+      const year = p.year || (p.date ? new Date(p.date).getFullYear() : "Unknown");
+      return { ...p, year };
+    });
 
-    if (!acc[year]) acc[year] = [];
-    acc[year].push(post);
+    // Sort newest first by date (fallback: title)
+    normalized.sort((a, b) => {
+      const da = a.date ? new Date(a.date).getTime() : 0;
+      const db = b.date ? new Date(b.date).getTime() : 0;
+      return db - da;
+    });
 
-    return acc;
-  }, {});
+    // Group
+    const grouped = normalized.reduce((acc, post) => {
+      acc[post.year] = acc[post.year] || [];
+      acc[post.year].push(post);
+      return acc;
+    }, {});
 
-  const sortedYears = Object.keys(postsByYear)
-    .sort((a, b) => b - a);
+    // Sort years desc (numeric where possible)
+    const years = Object.keys(grouped).sort((a, b) => Number(b) - Number(a));
 
-  return (
-    <Container className="blog-archive">
+    return { sortedYears: years, postsByYear: grouped };
+  }, []);
+
+ return (
+  <Container className="blog-page">
+
+    {/* Top navigation */}
+    <div className="blog-tags-header" style={{ marginBottom: "1.5rem" }}>
+      <Link to="/tags" className="tag-pill">
+        Browse Tags →
+      </Link>
+    </div>
+
+
+    {/* Archive grouped by year */}
+    <div className="blog-archive">
       {sortedYears.map((year) => (
-        <div key={year} className="blog-year-section">
+        <section key={year} className="blog-year-section">
           <h2 className="blog-year">{year}</h2>
 
           <ul className="blog-list">
@@ -29,15 +68,35 @@ function BlogList() {
                 <Link to={`/blog/${post.id}`} className="blog-title-link">
                   {post.title}
                 </Link>
-                <span className="blog-date">{post.date}</span>
+
+                <span className="blog-date">
+                  {formatShortDate(post.date)}
+                </span>
               </li>
             ))}
           </ul>
-        </div>
+        </section>
       ))}
-    </Container>
-  );
+    </div>
+  </Container>
+);
+
 }
 
+/**
+ * Formats date like: "Oct 10"
+ * Keeps your archive looking clean.
+ */
+function formatShortDate(dateStr) {
+  if (!dateStr) return "";
+  const d = new Date(dateStr);
+  // Avoid invalid dates
+  if (Number.isNaN(d.getTime())) return dateStr;
+
+  return d.toLocaleDateString(undefined, {
+    month: "short",
+    day: "2-digit",
+  });
+}
 
 export default BlogList;
